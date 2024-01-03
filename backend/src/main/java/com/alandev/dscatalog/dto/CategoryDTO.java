@@ -1,6 +1,7 @@
 package com.alandev.dscatalog.dto;
 
 import com.alandev.dscatalog.entities.Category;
+import com.alandev.dscatalog.entities.Product;
 
 public class CategoryDTO {
 

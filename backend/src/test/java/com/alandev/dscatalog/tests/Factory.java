@@ -11,12 +11,16 @@ public class Factory {
     public static Product creatProduct() {
         Product product = new Product(1L, "Phone", "Good Phone", 800.0,
                 "http://img.com/img.png", Instant.parse("2020-01-02T13:00:00Z"));
-        product.getCategories().add(new Category(2L, "Electronics"));
+        product.getCategories().add(createCategory());
         return product;
     }
 
     public static ProductDTO createProductDto() {
         Product product = creatProduct();
         return new ProductDTO(product, product.getCategories());
+    }
+
+    public static Category createCategory(){
+        return new Category(1L, "Electronics");
     }
 }

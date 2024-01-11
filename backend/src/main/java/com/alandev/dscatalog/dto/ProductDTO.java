@@ -2,6 +2,10 @@ package com.alandev.dscatalog.dto;
 
 import com.alandev.dscatalog.entities.Category;
 import com.alandev.dscatalog.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -11,15 +15,23 @@ import java.util.Set;
 public class ProductDTO {
 
     private Long id;
+
+    @Size(min = 5, max = 60, message = "Deve ter entre 5 e 60 caracteres")
+    @NotBlank(message = "Campo obrigatório")
     private String name;
     private String description;
+
+    @Positive(message = "O preço deve ser valor positivo")
     private Double price;
     private String imgUrl;
+
+    @PastOrPresent(message = "A data do produto não pode ser futura")
     private Instant date;
 
     private List<CategoryDTO> categories = new ArrayList<>();
 
-    public ProductDTO(){}
+    public ProductDTO() {
+    }
 
     public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
         this.id = id;
@@ -39,7 +51,7 @@ public class ProductDTO {
         this.date = entity.getDate();
     }
 
-    public ProductDTO(Product entity, Set<Category> categories){
+    public ProductDTO(Product entity, Set<Category> categories) {
         this(entity);
         categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }

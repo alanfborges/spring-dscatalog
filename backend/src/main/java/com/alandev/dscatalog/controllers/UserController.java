@@ -3,6 +3,7 @@ package com.alandev.dscatalog.controllers;
 import com.alandev.dscatalog.dto.ProductDTO;
 import com.alandev.dscatalog.dto.UserDTO;
 import com.alandev.dscatalog.dto.UserInsertDTO;
+import com.alandev.dscatalog.dto.UserUpdateDTO;
 import com.alandev.dscatalog.entities.User;
 import com.alandev.dscatalog.service.ProductService;
 import com.alandev.dscatalog.service.UserService;
@@ -44,9 +45,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserDTO dto) {
-        dto = service.update(id, dto);
-        return ResponseEntity.ok().body(dto);
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO dto) {
+        UserDTO newDto = service.update(id, dto);
+        return ResponseEntity.ok().body(newDto);
     }
 
     @DeleteMapping(value = "/{id}")

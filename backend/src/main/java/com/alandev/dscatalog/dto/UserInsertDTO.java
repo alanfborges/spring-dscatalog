@@ -1,5 +1,8 @@
 package com.alandev.dscatalog.dto;
 
+import com.alandev.dscatalog.service.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
     private String password;
